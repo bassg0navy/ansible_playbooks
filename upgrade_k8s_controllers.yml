@@ -8,4 +8,6 @@
       cd {{ upgrade_scripts_dir }}
       git pull
       {{ upgrade_controller_command }} | sudo tee /tmp/cron/git.log
+    args: 
+      executable: /bin/bash
     

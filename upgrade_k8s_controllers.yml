@@ -3,8 +3,7 @@
   hosts: controller-0
 
   vars:
-    gig_ssh_command:
-      http_proxy: 'ssh -i /home/ubuntu/.ssh/gh_ssh_key -o IdentitiesOnly=yes -o LogLevel=quiet'
+    gig_ssh_command: 'ssh -i /home/ubuntu/.ssh/gh_ssh_key -o IdentitiesOnly=yes -o LogLevel=quiet'
 
   tasks: 
   - name: Pull Latest Upgrade Script from VSC & Run

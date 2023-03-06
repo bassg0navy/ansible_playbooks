@@ -1,0 +1,11 @@
+# First Playbook
+- name: Upgrade K8s Controllers
+  hosts: k8s_controllers
+
+  tasks: 
+  - name: Pull Latest Upgrade Script from VSC & Run
+    ansible.builtin.shell: |
+      cd {{ upgrade_scripts_dir }}
+      git pull
+      {{ upgrade_controller_command }} | sudo tee /tmp/cron/git.log
+    

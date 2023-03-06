@@ -2,9 +2,6 @@
 - name: Upgrade K8s Controllers
   hosts: controller-0
 
-  vars:
-    gig_ssh_command: 'ssh -i /home/ubuntu/.ssh/gh_ssh_key -o IdentitiesOnly=yes -o LogLevel=quiet'
-
   tasks: 
   - name: Pull Latest Upgrade Script from VSC & Run
     ansible.builtin.shell: |
@@ -13,5 +10,6 @@
       {{ upgrade_controller_command }} &> /tmp/cron/git.log
     args: 
       executable: /bin/bash
-    environment: "{{ git_ssh_command }}"
+    environment: 
+      GIT_SSH_COMMAND: "ssh -i /home/ubuntu/.ssh/gh_ssh_key -o IdentitiesOnly=yes -o LogLevel=quiet"
     

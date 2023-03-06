@@ -10,5 +10,5 @@
       {{ upgrade_controller_command }} &> /tmp/cron/git.log
     args: 
       executable: /bin/bash
-    environment: "{{ GIT_SSH_COMMAND }}""
+    environment: "{{ GIT_SSH_COMMAND }}"
     

@@ -7,10 +7,10 @@
     ansible.builtin.shell: |
       cd {{ upgrade_scripts_dir }}
       git pull
-      {{ upgrade_controller_command }} &> {{ UPGRADE_LOG }}
+      mkdir -p {{ ANSIBLE_UPGRADE_LOG }}
+      {{ upgrade_controller_command }} &> {{ ANSIBLE_UPGRADE_LOG }}
     args: 
       executable: /bin/bash
     environment: 
       GIT_SSH_COMMAND: "ssh -i /home/ubuntu/.ssh/gh_ssh_key -o IdentitiesOnly=yes -o LogLevel=quiet"
-      UPGRADE_LOG: /tmp/controller-upgrade-error.log
     

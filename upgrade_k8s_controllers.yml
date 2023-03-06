@@ -3,14 +3,20 @@
   hosts: controller-0
 
   tasks: 
-  - name: Pull Latest Upgrade Script from VSC & Run
-    ansible.builtin.shell: |
+  - name: Change Into Scripts Directory
+    ansible.builtin.shell:
       cd {{ upgrade_scripts_dir }}
+  - name: Pull Latest
+    ansible.builtin.shell:
       git pull
-      mkdir -p /tmp/ansible
-      {{ upgrade_controller_command }} &> {{ ansible_upgrade_log }}
     args: 
       executable: /bin/bash
     environment: 
       GIT_SSH_COMMAND: "ssh -i /home/ubuntu/.ssh/gh_ssh_key -o IdentitiesOnly=yes -o LogLevel=quiet"
-    
+  - name: Run Upgrade
+    ansible.builtin.shell:
+      mkdir -p /tmp/ansible
+      {{ upgrade_controller_command }} &> {{ ansible_upgrade_log }}
+    args: 
+      executable: /bin/bash
+        

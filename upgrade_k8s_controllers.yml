@@ -7,6 +7,8 @@
     ansible.builtin.shell: |
       cd {{ upgrade_scripts_dir }}
       git pull
+    register: pull_out
+    changed_when: 'pull_out.stdout != "Already up to date."'
     args: 
       executable: /bin/bash
     environment: 

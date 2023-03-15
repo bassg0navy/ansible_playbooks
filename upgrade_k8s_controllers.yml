@@ -1,14 +1,14 @@
 # First Playbook
 - name: Upgrade K8s Controllers
-  hosts: controller-0
+  hosts: k8s_controllers
 
   tasks: 
   - name: Pull Latest
     ansible.builtin.shell: |
       cd {{ upgrade_scripts_dir }}
       git pull
-    # register: pull_out
-    # changed_when: 'pull_out.stdout != "Already up to date."'
+      # register: pull_out
+      #changed_when: "'Already up to date.' is not in pull_out.stdout" 
     args: 
       executable: /bin/bash
     environment: 
